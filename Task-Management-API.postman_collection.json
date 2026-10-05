@@ -1,0 +1,161 @@
+{
+  "info": {
+    "name": "Task Management API",
+    "_postman_id": "task-management-api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000"
+    },
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "boardId",
+      "value": ""
+    },
+    {
+      "key": "listId",
+      "value": ""
+    },
+    {
+      "key": "taskId",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/health"
+      }
+    },
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\": \"Demo User\", \"email\": \"demo@example.com\", \"password\": \"password123\"}"
+        },
+        "url": "{{baseUrl}}/api/auth/register"
+      }
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\": \"demo@example.com\", \"password\": \"password123\"}"
+        },
+        "url": "{{baseUrl}}/api/auth/login"
+      }
+    },
+    {
+      "name": "My Boards",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": "{{baseUrl}}/api/boards"
+      }
+    },
+    {
+      "name": "Create Board",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\": \"My Project\", \"description\": \"Demo Trello board\"}"
+        },
+        "url": "{{baseUrl}}/api/boards"
+      }
+    },
+    {
+      "name": "Board Details",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": "{{baseUrl}}/api/boards/{{boardId}}"
+      }
+    },
+    {
+      "name": "Create List",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\": \"Todo\", \"boardId\": \"{{boardId}}\", \"position\": 0}"
+        },
+        "url": "{{baseUrl}}/api/lists"
+      }
+    },
+    {
+      "name": "Create Task",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\": \"First task\", \"boardId\": \"{{boardId}}\", \"listId\": \"{{listId}}\", \"priority\": \"medium\", \"status\": \"todo\", \"position\": 0}"
+        },
+        "url": "{{baseUrl}}/api/tasks"
+      }
+    }
+  ]
+}
