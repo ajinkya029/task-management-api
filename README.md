@@ -161,7 +161,7 @@ task-management-api/
 ## 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/task-management-api.git
+git clone https://github.com/ajinkya029/task-management-api.git
 ```
 
 Navigate into the project:
